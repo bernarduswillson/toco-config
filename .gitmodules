@@ -1,0 +1,12 @@
+[submodule "toco-spa"]
+ path = toco-spa
+ url = https://gitlab.informatika.org/toco-2/toco-spa.git
+[submodule "toco-soap"]
+ path = toco-soap
+ url = https://gitlab.informatika.org/toco-2/toco-soap.git
+[submodule "toco-rest"]
+ path = toco-rest
+ url = https://gitlab.informatika.org/toco-2/toco-rest.git
+[submodule "toco-app"]
+ path = toco-app
+ url = https://gitlab.informatika.org/toco-2/toco-app.git
