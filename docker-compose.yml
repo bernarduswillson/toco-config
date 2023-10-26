@@ -4,9 +4,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./toco-spa:/react-app
+      - ../toco-spa:/react-app
     build:
-      context: ./toco-spa
+      context: ../toco-spa
       dockerfile: Dockerfile
     # environment:
     #   - REACT_APP_API_URL=http://localhost:8080/api
@@ -15,9 +15,9 @@ services:
     ports:
       - 8008:80
     volumes:
-      - ./toco-app:/var/www/html
+      - ../toco-app:/var/www/html
     build:
-      context: ./toco-app
+      context: ../toco-app
       dockerfile: Dockerfile
     environment:
       - UPLOAD_LIMIT=10M
@@ -26,10 +26,12 @@ services:
     image: postgres:latest
     ports:
       - "5432:5432"
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: bewe
-      POSTGRES_DB: toco
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB}
     volumes:
-      - "./toco-app/db:/docker-entrypoint-initdb.d"
+      - "../toco-app/db:/docker-entrypoint-initdb.d"
     restart: always
