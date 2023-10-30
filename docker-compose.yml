@@ -9,8 +9,8 @@ services:
     build:
       context: ../toco-spa
       dockerfile: Dockerfile
-    # environment:
-    #   - REACT_APP_API_URL=http://localhost:8080/api
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
 
   php:
     ports:
