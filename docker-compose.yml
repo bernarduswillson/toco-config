@@ -63,3 +63,24 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:${DB_PASSWORD}@postgresql2:5432/${DB2}
       JWT_SECRET: ${JWT_SECRET}
+
+  mysql:
+    image: mysql/mysql-server:8.0.23
+    ports:
+      - "3306:3306"
+    volumes:
+      - "../toco-soap/db:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB3}
+      MYSQL_USER: ${DB_USERSQL}
+      MYSQL_PASSWORD: ${DB_PASSWORDSQL}
+
+  soap:
+    build:
+      context: ../toco-soap
+      dockerfile: Dockerfile
+    ports:
+        - "8080:8080"
+    depends_on:
+      - mysql
